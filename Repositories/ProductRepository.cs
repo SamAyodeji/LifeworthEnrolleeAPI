@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LifeworthAPI.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using LifeworthAPI.Helper.Account;
 
 namespace LifeworthAPI.Repositories
 {
@@ -33,5 +34,20 @@ namespace LifeworthAPI.Repositories
         {
             return await lifeworthContext.Product.Where(m => m.IdProduct == ID_Product).ToListAsync();
         }
-    }
+
+        public async Task<IEnumerable<ViewProductDTO>> Getproducts()
+        {
+            return await lifeworthContext.Product.Select(x => ToDTO(x)).ToListAsync();
+        }
+
+        private static ViewProductDTO ToDTO(Product pro) =>
+         new ViewProductDTO
+         {
+             IdProduct = pro.IdProduct,
+             Name = pro.Name
+
+         };
+
+    
+}
 }

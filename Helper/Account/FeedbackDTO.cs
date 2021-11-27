@@ -12,6 +12,8 @@ namespace LifeworthAPI.Helper.Account
         //public bool IsComplete { get; set; }
         public DateTime FeedBackDate { get; set; }
         public string Name { get; set; }
+        public string Rate { get;  set; }
+        public int IDProvider { get; set; }
     }
 
     

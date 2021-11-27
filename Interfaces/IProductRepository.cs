@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LifeworthAPI.Repositories;
 using LifeworthAPI.Models;
+using LifeworthAPI.Helper.Account;
 
 namespace LifeworthAPI.Interfaces
 {
@@ -12,5 +13,6 @@ namespace LifeworthAPI.Interfaces
 
 
         Task<IEnumerable<Product>> GetPolicyByIDAsync(string ID_Product);
+        public Task<IEnumerable<ViewProductDTO>> Getproducts();
     }
 }

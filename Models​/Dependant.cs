@@ -46,5 +46,6 @@ namespace LifeworthAPI.Models​
         public DateTime? TransactionDate { get; set; }
         public DateTime? CommenceDate { get; set; }
         public DateTime? Tdate { get; set; }
+        public string Address { get; set; }
     }
 }

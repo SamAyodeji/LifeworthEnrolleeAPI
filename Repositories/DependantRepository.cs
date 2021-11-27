@@ -49,7 +49,8 @@ namespace LifeworthAPI.Repositories
                BirthDate = newDependantDTO.BirthDate,
                Sex = newDependantDTO.Sex,
                IdEmployee = newDependantDTO.IdEmployee,
-               RelationType = newDependantDTO.RelationType
+               RelationType = newDependantDTO.RelationType,
+               Address = newDependantDTO.Address
 
             };
 
@@ -58,6 +59,31 @@ namespace LifeworthAPI.Repositories
             return null;
 
         }
+
+
+
+
+        public async Task<IActionResult> UpdateDependant(int IdDependant, UpdateDependantDTO updatedependantDTO)
+        {
+            var result = await lifeworthContext.Dependant.FindAsync(IdDependant);
+            if (result != null)
+            {
+                result.Name = updatedependantDTO.Name;
+                result.BirthDate = updatedependantDTO.BirthDate;
+                result.Address = updatedependantDTO.Address;
+                //result.Address02 = updateEmployeeDTO.Address02;
+            }
+            await lifeworthContext.SaveChangesAsync();
+            return null;
+        }
+
+
+
+
+
+
+
+
 
         public async Task<IEnumerable<Dependant>> GetDependantAsync(string DependantNo = null, string Surname = null, string FullName= null)
         {

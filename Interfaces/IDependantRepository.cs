@@ -18,5 +18,7 @@ namespace LifeworthAPI.Interfaces
         //Task<Dependant> AddDependant(Dependant dependant);
         //Task AddDependant(DependantDTO dependantDTO);
         Task<NewDependantDTO> AddDependant(NewDependantDTO newDependantDTO);
+
+        Task<IActionResult> UpdateDependant(int IdDependant, UpdateDependantDTO updatedependantDTO);
     }
 }

@@ -15,7 +15,7 @@ namespace LifeworthAPI.Repositories
         
         public UnitOfWork(ILogger<UnitOfWork> logger, DB9198_lifeworthContext dbContext,
             ILogger<DependantRepository> dependantLogger,
-            ILogger<ProviderRepository> providerLogger, ILogger<EmployeeRepository> employeeLoger, ILogger<FeedBackRepository> feedbackLogger, ILogger<ProductRepository> ProductLogger)
+            ILogger<ProviderRepository> providerLogger, ILogger<EmployeeRepository> employeeLoger, ILogger<FeedBackRepository> feedbackLogger, ILogger<ProductRepository> ProductLogger, ILogger<RelationTypeRepository> relationtypelogger, ILogger<SexRepository> sexLogger)
         {
             this.logger = logger;
             this.dbContext = dbContext;
@@ -24,6 +24,8 @@ namespace LifeworthAPI.Repositories
             Dependants = new DependantRepository(dbContext, dependantLogger);
             FeedBack = new FeedBackRepository(dbContext, feedbackLogger );
             Product = new ProductRepository(dbContext, ProductLogger);
+            RelationType = new RelationTypeRepository(dbContext, relationtypelogger);
+            Sex = new SexRepository(dbContext, sexLogger);
         }
 
         public IProviderRepository Providers { get; private set; }
@@ -31,6 +33,11 @@ namespace LifeworthAPI.Repositories
         public IDependantRepository Dependants { get; private set; }
         public IFeedBackRepository FeedBack { get; private set; }
         public IProductRepository Product { get; private set; }
+
+        public IRelationTypeRepository RelationType { get; private set; }
+        public ISexRepository Sex { get; private set; }
+
+
         public async Task CompleteAsync()
         {
             await dbContext.SaveChangesAsync();

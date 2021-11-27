@@ -73,5 +73,27 @@ namespace LifeworthAPI.Controllers
                 
         }
 
+        [HttpPut("Id/UpdateDependant")]
+        public async Task<IActionResult> UpdateEmployee(int IdDependant, UpdateDependantDTO updatedependantDTO)
+        {
+            try
+            {
+
+                //var edey = await employeeRepository.GetEmployee(IdEmployee);
+
+                await dependantRepository.UpdateDependant(IdDependant, updatedependantDTO);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+
+
+
+
+
     }
 }

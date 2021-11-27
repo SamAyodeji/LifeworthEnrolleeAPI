@@ -14,6 +14,10 @@ namespace LifeworthAPI.Interfaces
         
         public IProductRepository Product { get; }
 
+        public IRelationTypeRepository RelationType { get; }
+
+        public ISexRepository Sex { get; }
+
 
         //Task Complete();
         Task CompleteAsync();

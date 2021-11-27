@@ -57,7 +57,9 @@ namespace LifeworthAPI.Repositories
             {
                 Name = feedbackDTO.Name,
                 FeedBackDate =feedbackDTO.FeedBackDate,
-                FeedBack1 = feedbackDTO.FeedBack
+                FeedBack1 = feedbackDTO.FeedBack,
+                Rate = feedbackDTO.Rate,
+                IDProvider = feedbackDTO.IDProvider
 
             };
 

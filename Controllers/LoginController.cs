@@ -51,6 +51,7 @@ namespace LifeworthAPI.Controllers
                 {
                     //compare password
                     // var encodedPassword = general.generatehash(requestDTO.Password, Convert.FromBase64String(provider.PasswordSalt));
+                    
                     var PhoneNo = enrollee.PhoneNo;
                     if (enrollee.PhoneNo == PhoneNo)
                     {

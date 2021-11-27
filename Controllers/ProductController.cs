@@ -60,5 +60,17 @@ namespace LifeworthAPI.Controllers
                 };
 
         }
+
+        [HttpGet("ListProducts")]
+        public async Task<ActionResult<IEnumerable<ViewProductDTO>>> GetProducts()
+        {
+
+            return (await productRepository1.Getproducts()).ToList();
+
+
+
+        }
+
+    
     }
 }

@@ -15,5 +15,7 @@ namespace LifeworthAPI.Models​
         public string FeedBack1 { get; set; }
         public bool? Done { get; set; }
         public string Name { get; internal set; }
+        public string Rate { get;  set; }
+        public int IDProvider { get; set; }
     }
 }

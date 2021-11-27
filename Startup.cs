@@ -116,6 +116,8 @@ namespace LifeworthAPI
             services.AddScoped<IDependantRepository, DependantRepository>();
             services.AddScoped<IFeedBackRepository, FeedBackRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IRelationTypeRepository, RelationTypeRepository>();
+            services.AddScoped<ISexRepository, SexRepository>();
            
         }
 

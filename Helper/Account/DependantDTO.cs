@@ -14,6 +14,7 @@ namespace LifeworthAPI.Helper.Account
         public string Surname { get; set; }
         public string Name { get; set; }
         public string EmployeeNo { get; set; }
+       public string image{get; set;}
         public string IsComplete { get; set; }
     }
 }

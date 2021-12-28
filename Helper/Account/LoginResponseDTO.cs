@@ -14,6 +14,8 @@ namespace LifewortAPI.DTO.Account
         public string Gender { get; set; }
         public string Policy { get; set; }
         public string Name { get; set; }
+
+        public string FullName { get; set; }
         public string image { get; set; }
 
         

@@ -34,11 +34,32 @@ namespace LifeworthAPI.Repositories
         {
             return await lifeworthContext.Product.Where(m => m.IdProduct == ID_Product).ToListAsync();
         }
+        public async Task<IEnumerable<Product>> GetBenefitByIDAsync(string ID_Product)
+        {
+            return await lifeworthContext.Product.Where(m => m.IdProduct == ID_Product).ToListAsync();
+        }
 
         public async Task<IEnumerable<ViewProductDTO>> Getproducts()
         {
             return await lifeworthContext.Product.Select(x => ToDTO(x)).ToListAsync();
         }
+
+        public async Task<IEnumerable<BuyProductDTO>> BuyProducts()
+        {
+            return await lifeworthContext.Product.Where(x => x.Type == "Basic").Select(x => BuyDTO(x)).ToListAsync();
+        }
+
+        private static BuyProductDTO BuyDTO(Product Buypro) =>
+            new BuyProductDTO
+            {
+                IdProduct = Buypro.IdProduct,
+                Name = Buypro.Name,
+                IndividualPrice = Buypro.IndividualPrice,
+                FamilyPrice = Buypro.FamilyPrice,
+                Benefits = Buypro.Benefits,
+            };
+
+
 
         private static ViewProductDTO ToDTO(Product pro) =>
          new ViewProductDTO

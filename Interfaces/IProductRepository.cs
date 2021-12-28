@@ -14,5 +14,9 @@ namespace LifeworthAPI.Interfaces
 
         Task<IEnumerable<Product>> GetPolicyByIDAsync(string ID_Product);
         public Task<IEnumerable<ViewProductDTO>> Getproducts();
+
+        public Task<IEnumerable<BuyProductDTO>> BuyProducts();
+
+        Task<IEnumerable<Product>> GetBenefitByIDAsync(string ID_Product);
     }
 }

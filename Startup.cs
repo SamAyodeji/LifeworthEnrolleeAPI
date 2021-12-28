@@ -37,6 +37,7 @@ namespace LifeworthAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddHttpContextAccessor();
 
             // For Identity
             //services.AddCors(options => options.AddDefaultPolicy(p => p.AllowAnyOrigin()
@@ -138,7 +139,7 @@ namespace LifeworthAPI
             });
 
             app.UseHttpsRedirection();
-
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseCors(x => x
             .AllowAnyOrigin()

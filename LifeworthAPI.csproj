@@ -28,6 +28,11 @@
 
   <ItemGroup>
     <Folder Include="DTO\" />
+    <Folder Include="wwwroot1\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\image\bk.jpeg" />
   </ItemGroup>
 
 

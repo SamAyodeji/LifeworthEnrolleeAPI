@@ -28,13 +28,14 @@ namespace LifeworthAPI.Controllers
         public IConfiguration config;
         private readonly IDependantRepository dependantRepository;
         public readonly DB9198_lifeworthContext dB9198_LifeworthContext1;
+        private readonly IHttpContextAccessor httpContextAccessor;
 
-
-        public DependantController(IUnitOfWork unitOfWork, General general, IDependantRepository dependantRepository)
+        public DependantController(IUnitOfWork unitOfWork, General general, IDependantRepository dependantRepository, IHttpContextAccessor httpContextAccessor)
         {
             this.unitOfWork = unitOfWork;
             this.general = general;
             this.dependantRepository = dependantRepository;
+            this.httpContextAccessor = httpContextAccessor;
         }
 
 
@@ -47,13 +48,13 @@ namespace LifeworthAPI.Controllers
             // var dd = <IEnumerable<DependantDTO>>(dependant);
             return dependant.Select(x => Dependantss(x)).ToList();
 
-            static DependantDTO Dependantss(Dependant x)
+             DependantDTO Dependantss(Dependant x)
            =>
                 new DependantDTO
                 {
                     IdDependant = x.IdDependant,
                     Name = x.Name,
-
+                    image = $"{httpContextAccessor.HttpContext.Request.Scheme.ToString()}:\\{httpContextAccessor.HttpContext.Request.Host.ToString()}\\image\\{ x.ImageFileName }",
                     IdEmployee = x.IdEmployee,
                     Surname = x.Surname,
                     EmployeeNo = x.EmployeeNo,

@@ -32,13 +32,14 @@ namespace LifeworthAPI.Controllers
         private readonly IDependantRepository dependantRepository;
         private readonly IEmployeeRepository employeeRepository;
         //public readonly DB9198_lifeworthContext dB9198_LifeworthContext1;
-
-        public LoginController(IUnitOfWork unitOfWork, General general, IEmployeeRepository employeeRepository, IDependantRepository dependantRepository)
+        private readonly IHttpContextAccessor httpContextAccessor;
+        public LoginController(IUnitOfWork unitOfWork, General general, IEmployeeRepository employeeRepository, IDependantRepository dependantRepository, IHttpContextAccessor httpContextAccessor)
         {
             this.unitOfWork = unitOfWork;
             this.general = general;
             this.dependantRepository = dependantRepository;
             this.employeeRepository = employeeRepository;
+            this.httpContextAccessor = httpContextAccessor;
         }
         //POST api/Value
         [HttpPost]
@@ -61,9 +62,10 @@ namespace LifeworthAPI.Controllers
                             token = general.GenerateToken(enrollee.EmployeeNo),
                             EmployeeNo = enrollee.EmployeeNo,
                             Gender = enrollee.Sex,
-                            Name = enrollee.Surname + enrollee.FullName,
+                            Name = enrollee.Surname, 
+                            FullName = enrollee.FullName,
                             Policy = enrollee.CurrentIdPolicy,
-                            image = enrollee.ImageFileName,
+                            image = $"{httpContextAccessor.HttpContext.Request.Scheme.ToString()}:\\{httpContextAccessor.HttpContext.Request.Host.ToString()}\\image\\{enrollee.ImageFileName}",
                             id = enrollee.IdEmployee,
                             ID_Product = enrollee.IdProduct,
                             ResponseMessage = "Login Successful"

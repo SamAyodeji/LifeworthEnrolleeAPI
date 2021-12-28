@@ -50,7 +50,9 @@ namespace LifeworthAPI.Repositories
                Sex = newDependantDTO.Sex,
                IdEmployee = newDependantDTO.IdEmployee,
                RelationType = newDependantDTO.RelationType,
-               Address = newDependantDTO.Address
+               Address = newDependantDTO.Address,
+
+               ImageFileName = newDependantDTO.ImageFileName
 
             };
 

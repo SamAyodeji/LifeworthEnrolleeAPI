@@ -17,6 +17,8 @@ namespace LifeworthAPI.Helper.Account
         //public string ImageFileName { get; set; }
         public string Sex { get; set; }
         public string Address { get; set; }
+
+        public string ImageFileName { get; set; }
     }
 
 }

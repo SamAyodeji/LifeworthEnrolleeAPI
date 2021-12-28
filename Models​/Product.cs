@@ -35,5 +35,9 @@ namespace LifeworthAPI.Models​
         public string BandType { get; set; }
         public virtual ICollection<Policy> Policy { get; set; }
         public virtual ICollection<PolicyReschd> PolicyReschd { get; set; }
+        public string Type { get; internal set; }
+        public string IndividualPrice { get;  set; }
+        public string FamilyPrice { get;  set; }
+        public string Benefits { get; set; }
     }
 }

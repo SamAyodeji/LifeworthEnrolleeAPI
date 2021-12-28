@@ -60,6 +60,23 @@ namespace LifeworthAPI.Controllers
                 };
 
         }
+        [HttpGet("Benefit")]
+        public async Task<IEnumerable<BuyProductDTO>> GetBenefit(string ID_Product)
+        {
+            var Benefit = await productRepository1.GetBenefitByIDAsync(ID_Product);
+
+            // var dd = <IEnumerable<DependantDTO>>(dependant);
+            return Benefit.Select(x => product(x)).ToList();
+           
+
+            static BuyProductDTO product(Product x)
+           =>
+                new BuyProductDTO
+                {
+                   Benefits = x.Benefits,
+                };
+
+        }
 
         [HttpGet("ListProducts")]
         public async Task<ActionResult<IEnumerable<ViewProductDTO>>> GetProducts()
@@ -70,7 +87,15 @@ namespace LifeworthAPI.Controllers
 
 
         }
+        [HttpGet("BuyProduct")]
+        public async Task<ActionResult<IEnumerable<BuyProductDTO>>> GetProductsbyType()
+        {
 
-    
+            return (await productRepository1.BuyProducts()).ToList();
+
+
+
+        }
+
     }
 }

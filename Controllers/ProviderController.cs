@@ -52,6 +52,10 @@ namespace LifeworthAPI.Controllers
                 ProviderName = x.ProviderName,
                 ID_Provider = x.IdProvider,
             };
+       
+        
+
+
         
     }
 }

@@ -17,8 +17,9 @@ namespace LifewortAPI.DTO.Account
 
         public string FullName { get; set; }
         public string image { get; set; }
-
+        public int? IdProvider { get; set; }
         
+        public string BandType { get; set; }
 
         public string ID_Product { get; set; }
        // public object DateOfBrith { get; internal set; }

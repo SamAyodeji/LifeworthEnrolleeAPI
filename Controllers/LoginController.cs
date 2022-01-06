@@ -31,15 +31,17 @@ namespace LifeworthAPI.Controllers
         public IConfiguration config;
         private readonly IDependantRepository dependantRepository;
         private readonly IEmployeeRepository employeeRepository;
+        private readonly IProductRepository productRepository1;
         //public readonly DB9198_lifeworthContext dB9198_LifeworthContext1;
         private readonly IHttpContextAccessor httpContextAccessor;
-        public LoginController(IUnitOfWork unitOfWork, General general, IEmployeeRepository employeeRepository, IDependantRepository dependantRepository, IHttpContextAccessor httpContextAccessor)
+        public LoginController(IUnitOfWork unitOfWork, General general, IEmployeeRepository employeeRepository, IDependantRepository dependantRepository, IHttpContextAccessor httpContextAccessor, IProductRepository productRepository)
         {
             this.unitOfWork = unitOfWork;
             this.general = general;
             this.dependantRepository = dependantRepository;
             this.employeeRepository = employeeRepository;
             this.httpContextAccessor = httpContextAccessor;
+            this.productRepository1 = productRepository;
         }
         //POST api/Value
         [HttpPost]
@@ -48,6 +50,7 @@ namespace LifeworthAPI.Controllers
             try
             {
                 var enrollee = await unitOfWork.Employees.GetEmployeeByEmployeeNoAsync(requestDTO.employeeNo);
+                
                 if (enrollee != null)
                 {
                     //compare password
@@ -56,9 +59,18 @@ namespace LifeworthAPI.Controllers
                     var PhoneNo = enrollee.PhoneNo;
                     if (enrollee.PhoneNo == PhoneNo)
                     {
+
+                        // var badt = await productRepository1.GetPolicyByIDAsync(enrollee.IdProduct);
+                        var badt = await productRepository1.GetPolicyByIDAsync(enrollee.IdProduct);
+                        var bdt = badt.Select(x => x.BandType).FirstOrDefault();
+                        
+                        //var typeget = Getdependant(string ID_Product);
+
+
                         //credentails correct
                         return Ok(new LoginResponseDTO
                         {
+
                             token = general.GenerateToken(enrollee.EmployeeNo),
                             EmployeeNo = enrollee.EmployeeNo,
                             Gender = enrollee.Sex,
@@ -68,8 +80,10 @@ namespace LifeworthAPI.Controllers
                             image = $"{httpContextAccessor.HttpContext.Request.Scheme.ToString()}:\\{httpContextAccessor.HttpContext.Request.Host.ToString()}\\image\\{enrollee.ImageFileName}",
                             id = enrollee.IdEmployee,
                             ID_Product = enrollee.IdProduct,
-                            ResponseMessage = "Login Successful"
-
+                            IdProvider = enrollee.IdProvider,
+                           BandType = bdt.ToString(),
+                        ResponseMessage = "Login Successful"
+                            
                         });
                     }
                     return Problem(detail: "Incorrect login credentials");
@@ -83,6 +97,16 @@ namespace LifeworthAPI.Controllers
             }
         }
 
+        static ProductDTO products(Product x)
+           =>
+                new ProductDTO
+                {
+                    //IdProduct = x.IdProduct,
+                    BandType = x.BandType,
+
+
+                };
+
         //[HttpPut("")]
         //public async Task<IActionResult> UpdateEmployee(int IdEmployee, UpdateEmployeeDTO updateEmployeeDTO)
         //{
@@ -93,7 +117,7 @@ namespace LifeworthAPI.Controllers
         //            return BadRequest();
         //        }
         //        var edey = await employeeRepository.GetEmployee(IdEmployee);
-              
+
         //        await employeeRepository.UpdateEmployees(updateEmployeeDTO);
         //        return Ok();
         //    }
@@ -123,7 +147,34 @@ namespace LifeworthAPI.Controllers
 
 
 
+        //public async Task<IEnumerable<ProductDTO>> Getdependant(string ID_Product)
+        //{
+        //    var product = await productRepository1.GetPolicyByIDAsync(ID_Product);
 
+        //    // var dd = <IEnumerable<DependantDTO>>(dependant);
+        //    return product.Select(x => products(x)).ToList();
+        //    // return Dependantss(dependant);
+
+        //    // private IEnumerable<DependantDTO> Dependantss(IEnumerable<Dependant> dependant)
+        //    // {
+
+        //    //        //IdEmployee,
+
+        //    //     })
+        //    //     throw new NotImplementedException();
+        //    // }
+
+        //    static ProductDTO products(Product x)
+        //   =>
+        //        new ProductDTO
+        //        {
+        //            IdProduct = x.IdProduct,
+        //            BandType = x.BandType,
+
+
+        //        };
+
+        //}
 
 
 

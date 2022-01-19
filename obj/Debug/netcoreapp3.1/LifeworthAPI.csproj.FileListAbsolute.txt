@@ -136,4 +136,3 @@ C:\Users\Lifeworth-Ayodeji\source\repos\LifeworthAPI\bin\Debug\netcoreapp3.1\Swa
 C:\Users\Lifeworth-Ayodeji\source\repos\LifeworthAPI\obj\Debug\netcoreapp3.1\LifeworthAPI.csproj.CoreCompileInputs.cache
 C:\Users\Lifeworth-Ayodeji\source\repos\LifeworthAPI\obj\Debug\netcoreapp3.1\LifeworthAPI.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Lifeworth-Ayodeji\source\repos\LifeworthAPI\obj\Debug\netcoreapp3.1\LifeworthAPI.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Lifeworth-Ayodeji\source\repos\LifeworthAPI\obj\Debug\netcoreapp3.1\LifeworthAPI.csprojAssemblyReference.cache
